@@ -49,7 +49,7 @@ int main(){
 		
 	}
 
-	cout<<"Plese input your command"<<endl;
+	cout<<"Plese input your command";
 	
 
 
