@@ -9,9 +9,10 @@ int n=0;
 int num=0;
 char name[100];
 vector<string>ist;
+vector<string>sub;
 vector<int>p;
 vector<int>c;
-int x,y,z;
+int x,y,z,j=0;
 string com,two,sec;
 string mand="";
 int main(){
@@ -20,67 +21,100 @@ int main(){
 	dest.open("name_score.txt");
 	while(getline(dest,ge))
 	{
-	//	cout<<ge<<endl;
+	 
 	sscanf(ge.c_str(),"%[^:]:%d%d%d",name,&x,&y,&z);
 		ist.push_back(name);
+		sub.push_back(name);
 		p.push_back(x+y+z);
 	//	b.push_back(y);
 	//	c.push_back(z);
 		n++;
 	}
-	vector<string>grade(n);
+	vector<char>grade(n);
 	for(int i=0;i<n;i++){
 		if(p[i]>=50){
-		 	grade[i]="D";
+		 	grade[i]='D';
 		 }	
 		 else{
-		 	grade[i]="F";
+		 	grade[i]='F';
 		 }
 	 	if(p[i]>=60){
-		 	grade[i]="C";
+		 	grade[i]='C';
 		 }	
 		 if(p[i]>=70){
-		 	grade[i]="B";
+		 	grade[i]='B';
 		 }	
 		 if(p[i]>=80){
-			grade[i]="A";
+			grade[i]='A';
 			
 		}
 		
 	}
-
-	cout<<"Plese input your command";
+while(1){
+mand="";
+j=0;
+	cout<<"Plese input your command :";
 	
 
 
-	getline(cin,sec);
-
-//	if(mand=="")continues;
-	//if(com=="exit"){
-//	;
-//	}
+	cin>>com;
+	cin>>two;
+for(int i=0;com[i];i++){
+			com[i]=toupper(com[i]);
+	}
+	if(com=="EXIT"){
+		break;
+		}
+		cout<<com;
+	if(com!="GRADE"||com!="NAME"){
+		cout<<"Invalid command"<<endl;
+continue;
+	}
+	else{
+		for(int i=0;i<n;i++)cout<<"-";
+	}
 	
-	for(int i=0;i<sizeof(two);i++){
+	
+	for(int i=0;two[i];i++){
 			mand[i]=toupper(two[i]);
 	}
 
-	if(com=="grade"){
-		for(int i=0;i<n;i++){
-			if(mand==grade[i]){
+	if(com=="GRADE"){
+		for(int i=0;i<26;i++){
+			if(mand[0]==grade[i]){
 				cout<<ist[i]<<endl;
 			}
 		}
 	}
-	else if(com=="name")
+	else if(com=="NAME")
 	{
 		
-			for(int i=0;i<n;i++){
-				for(int k=0;k<sizeof(ist[i]);k++)ist[i][k]=toupper(ist[i][k]);
-				
-			if(mand==ist[i]){
-				cout<<grade[i]<<endl;
+					for(int i=0;i<n;i++){
+				for(int k=0;ist[i][k];k++)
+				{
+				ist[i][k]=toupper(ist[i][k]);
+					
+				}
+			}	
+		
+		for(int i=0;i<n;i++){
+			for(int k=0;ist[i][k];k++){
+				if(mand[k]!=ist[i][k]){
+			j=0;
+					break;
+				}
+				if(mand[k]==ist[i][k]){
+				j=i;
+							}
 			}
+			if(j!=0)cout<<sub[j]<<"'s grade = "<<grade[j]<<endl;
 		}
+		
+	}
+			
+			for(int i=0;i<n;i++)cout<<"-";
+		continue;			
+		
 	}
 	
 	
