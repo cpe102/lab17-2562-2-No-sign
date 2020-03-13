@@ -13,8 +13,8 @@ vector<string>sub;
 vector<int>p;
 vector<int>c;
 int x,y,z,j=0;
-string com,two,sec;
-string mand="";
+string com,two,sec,mand;
+
 int main(){
 	
 	ifstream dest;
@@ -26,10 +26,9 @@ int main(){
 		ist.push_back(name);
 		sub.push_back(name);
 		p.push_back(x+y+z);
-	//	b.push_back(y);
-	//	c.push_back(z);
 		n++;
 	}
+	
 	vector<char>grade(n);
 	for(int i=0;i<n;i++){
 		if(p[i]>=50){
@@ -52,36 +51,38 @@ int main(){
 	}
 while(1){
 mand="";
+com="";
 j=0;
 	cout<<"Plese input your command :";
 	
 
 
 	cin>>com;
-	cin>>two;
-for(int i=0;com[i];i++){
+	for(int i=0;com[i];i++){
 			com[i]=toupper(com[i]);
 	}
 	if(com=="EXIT"){
 		break;
 		}
-		cout<<com;
-	if(com!="GRADE"||com!="NAME"){
-		cout<<"Invalid command"<<endl;
-continue;
+	getline(cin,two);
+	
+	if(com=="GRADE"||com=="NAME"){
+		for(int i=0;i<n;i++)cout<<"-";
+		cout<<endl;
 	}
 	else{
-		for(int i=0;i<n;i++)cout<<"-";
+		cout<<"Invalid command"<<endl;
+continue;
 	}
 	
 	
 	for(int i=0;two[i];i++){
 			mand[i]=toupper(two[i]);
 	}
-
 	if(com=="GRADE"){
+		
 		for(int i=0;i<26;i++){
-			if(mand[0]==grade[i]){
+			if(mand[1]==grade[i]){
 				cout<<ist[i]<<endl;
 			}
 		}
@@ -99,11 +100,11 @@ continue;
 		
 		for(int i=0;i<n;i++){
 			for(int k=0;ist[i][k];k++){
-				if(mand[k]!=ist[i][k]){
+				if(mand[k+1]!=ist[i][k]){
 			j=0;
 					break;
 				}
-				if(mand[k]==ist[i][k]){
+				if(mand[k+1]==ist[i][k]){
 				j=i;
 							}
 			}
@@ -113,6 +114,7 @@ continue;
 	}
 			
 			for(int i=0;i<n;i++)cout<<"-";
+			cout<<"\n";
 		continue;			
 		
 	}
